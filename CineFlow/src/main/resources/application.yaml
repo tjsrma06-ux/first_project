@@ -1,0 +1,29 @@
+spring:
+  config:
+    # Local .env is ignored by Git. OS environment variables take precedence.
+    import: optional:file:.env[.properties]
+  application:
+    name: CineFlow
+  datasource:
+    url: jdbc:postgresql://${DATABASE_HOST:localhost}:${DATABASE_PORT:5432}/${DATABASE_NAME:cineflow}
+    username: ${DATABASE_USERNAME:cineflow}
+    password: ${DATABASE_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+        jdbc:
+          time_zone: Asia/Seoul
+  flyway:
+    enabled: false
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+
+server:
+  timezone: Asia/Seoul
